@@ -1,13 +1,10 @@
-# README
+# Vaccine Tracker API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Built with Ruby 2.6.3 and Rails 6.0.1
+When running on localhost, port is set to 9000
+Root welcome page will give availble routes.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
+System dependencies:
 
 * Configuration
 
@@ -20,5 +17,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
