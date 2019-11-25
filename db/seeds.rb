@@ -1,7 +1,7 @@
 require 'csv'
 
 vaccine_csv_text = File.read(Rails.root.join('lib', 'seeds', 'Vaccines.csv'))
-vaccine_csv = CSV.parse(csv_text)
+vaccine_csv = CSV.parse(vaccine_csv_text)
 
 Vaccine.destroy_all
 
