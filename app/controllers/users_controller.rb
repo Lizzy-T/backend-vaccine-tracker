@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    # before_action :authorize_request, except: [:create, :index]
     before_action :find_user, only: [:show, :update, :destroy]
     before_action :user_params, only: [:create, :update]
 
@@ -15,9 +16,11 @@ class UsersController < ApplicationController
     def create
         @user = User.new(@params)
         if @user.save 
-            render json: @user
+
+            render json: @user, status: :created
         else
-            render json: "error"
+            render json: { error: @user.errors.full_messages },
+                    status: :not_acceptable
         end
     end
 
