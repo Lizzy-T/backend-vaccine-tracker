@@ -4,12 +4,14 @@ class AuthController < ApplicationController
         if @user&.authenticate(login_params[:password])
             @token = encode_token({user_id: @user.id})
             render json: {
-                user: @user,
+                id: @user.id,
+                email: @user.email,
+                birthday: @user.birthday,
                 token: @token
             }
         else
             render json: {
-                message: "Invalid username or password"
+                error: "Invalid username or password"
             }
         end
     end
