@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_212112) do
+ActiveRecord::Schema.define(version: 2019_12_02_224107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "my_vaccines", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vaccine_id", null: false
+    t.date "given"
+    t.date "exp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_my_vaccines_on_user_id"
+    t.index ["vaccine_id"], name: "index_my_vaccines_on_vaccine_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -32,4 +43,6 @@ ActiveRecord::Schema.define(version: 2019_11_25_212112) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "my_vaccines", "users"
+  add_foreign_key "my_vaccines", "vaccines"
 end

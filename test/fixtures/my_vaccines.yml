@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  vaccine: one
+  given: 2019-12-02
+  exp: 2019-12-02
+
+two:
+  user: two
+  vaccine: two
+  given: 2019-12-02
+  exp: 2019-12-02
