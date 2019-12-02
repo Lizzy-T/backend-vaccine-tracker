@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user.destroy 
+        @user.destroy
 
         render json: {}, status: :no_content 
     end
