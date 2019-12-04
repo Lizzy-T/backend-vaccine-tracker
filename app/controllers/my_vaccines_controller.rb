@@ -1,4 +1,5 @@
 class MyVaccinesController < ApplicationController
+    before_action :authorize_request
     before_action :find_user
     before_action :myvaccine_params, only: [:create, :update]
 
@@ -16,13 +17,16 @@ class MyVaccinesController < ApplicationController
 
     private
     def find_user
-        @user = User.find(params[:user_id])
+        @user = @current_user
     end
 
     def myvaccine_params 
-        @params = params.permit(:user_id, :vaccine_id, :given, :exp)
+        @params = params.permit(:vaccine_id, :given, :exp)
         @params[:given] = Date.parse(@params[:given])
-        @params[:exp] = Date.parse(@params[:exp])
+        if @params[:exp]
+            @params[:exp] = Date.parse(@params[:exp])
+        end
+        @params[:user_id] = @user.id
     end
 
 end

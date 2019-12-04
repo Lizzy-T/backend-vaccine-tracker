@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    # before_action :authorize_request, except: [:create, :index]
+    before_action :authorize_request, except: [:create, :index]
     before_action :find_user, only: [:show, :update, :destroy]
     before_action :user_params, only: [:create, :update]
 
@@ -10,13 +10,17 @@ class UsersController < ApplicationController
     end
 
     def show 
-        render json: @user
+        render json: {
+            email: @user.email,
+            id: @user.id,
+            birthday: @user.birthday
+        }
     end
 
     def create
         @user = User.new(@params)
         if @user.save 
-
+            
             render json: @user, status: :created
         else
             render json: { error: @user.errors.full_messages },
@@ -44,6 +48,6 @@ class UsersController < ApplicationController
     end
 
     def find_user 
-        @user = User.find(params[:id])
+        @user = @current_user
     end
 end
