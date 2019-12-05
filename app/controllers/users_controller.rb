@@ -20,8 +20,13 @@ class UsersController < ApplicationController
     def create
         @user = User.new(@params)
         if @user.save 
-            
-            render json: @user, status: :created
+            @token = encode_token({user_id: @user.id})
+            render json: {
+                id: @user.id,
+                email: @user.email,
+                birthday: @user.birthday,
+                token: @token
+            }
         else
             render json: { error: @user.errors.full_messages },
                     status: :not_acceptable
